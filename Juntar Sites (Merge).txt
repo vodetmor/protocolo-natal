@@ -1,0 +1,138 @@
+Objetivo Geral
+
+Unificar uma Landing Page já existente com um Entregável (página de login) em um único projeto, criando um fluxo funcional simples para o usuário final e realizando o deploy final no repositório correto.
+
+Repositórios de Referência
+
+Entregável (Login / Área do Cliente)
+Repositório:
+https://github.com/7santosanderson7-star/protocol-musa-hub.git
+
+Função:
+Área de acesso do cliente após conversão, onde ele poderá acompanhar diariamente o protocolo de emagrecimento.
+
+Landing Page (Base do Projeto Final)
+Repositório:
+https://github.com/11jeronimo/corpo-de-musa-28.git
+
+Função:
+Página principal de venda/apresentação.
+Este será o repositório final de deploy.
+
+Escopo Técnico Obrigatório
+1. Importação e Estruturação
+
+Importar todo o conteúdo da Landing Page como base do projeto principal.
+
+Importar o Entregável (login) e integrá-lo ao projeto da Landing Page.
+
+Criar um diretório específico para o login:
+
+/login
+
+
+O fluxo deve permitir que, após conversão ou acesso direto, o usuário chegue corretamente à área /login.
+
+2. Integração entre Landing Page e Login
+
+A Landing Page deve conter um ponto claro de acesso ao login (botão, link ou redirecionamento).
+
+O diretório /login deve estar funcional, acessível e integrado visualmente ao projeto principal (mesmo padrão visual ou minimamente coerente).
+
+3. Simplificação do Entregável (UX focado no cliente final)
+
+O entregável deve ser extremamente simples, pensado para um público leigo.
+
+Objetivo do login:
+Permitir que o cliente se auto-acompanhe ao longo dos dias dentro de um protocolo de emagrecimento.
+
+Diretrizes:
+
+Interface limpa, direta e sem excesso de informações.
+
+Estrutura pensada em acompanhamento diário (ex: dias, progresso, etapas, ou check-ins simples).
+
+Nada técnico visível para o usuário final.
+
+4. Tutorial Guiado (Onboarding)
+
+Implementar um tutorial inicial dentro da área logada, com as seguintes características:
+
+O tutorial deve:
+
+Explicar cada função principal do site, passo a passo.
+
+Guiar visualmente o usuário (texto explicativo simples).
+
+Deve existir claramente a opção:
+“Skip Tutorial” / “Pular tutorial”
+
+Caso o usuário pule, ele deve ir direto para a área principal de acompanhamento.
+
+O tutorial deve ser exibido preferencialmente no primeiro acesso.
+
+5. Deploy Final (Obrigatório)
+
+Após concluir:
+
+Importação
+
+Integração
+
+Simplificação do entregável
+
+Implementação do tutorial
+
+Realizar o deploy final diretamente no repositório:
+
+https://github.com/11jeronimo/corpo-de-musa-28.git
+
+Conta com permissão:
+vodetmor
+
+O repositório final deve conter:
+
+Landing Page funcional
+
+Diretório /login integrado
+
+Fluxo completo e navegável
+
+Código organizado e pronto para uso em produção
+
+Critério de Sucesso
+
+O projeto será considerado concluído quando:
+
+Tudo estiver integrado em um único repositório
+
+O login funcionar corretamente em /login
+
+O usuário entender sozinho como usar a plataforma
+
+O tutorial for claro, simples e opcional
+
+O deploy estiver feito no repositório correto
+OBSERVAÇÃO CRÍTICA (LEIA COM ATENÇÃO)
+
+O design visual, paleta de cores, tipografia, layout e identidade estética geral já estão totalmente aprovados e NÃO DEVEM SER ALTERADOS.
+
+A única intervenção esperada no entregável é simplificação de uso, exclusivamente no nível de experiência do usuário (UX), considerando que o público brasileiro médio é leigo em tecnologia.
+
+Diretrizes obrigatórias:
+
+Não modificar cores, fontes, espaçamentos, identidade visual ou estilo gráfico.
+
+Não “embelezar” nem sofisticar visualmente a interface.
+
+A simplificação deve ocorrer apenas em:
+
+Redução de complexidade de navegação
+
+Clareza dos textos
+
+Fluxo lógico de uso
+
+Facilidade de entendimento sem explicações externas
+
+O objetivo é que qualquer usuário, mesmo com baixo letramento digital, consiga entender e usar o sistema sozinho, sem suporte, apenas seguindo o fluxo natural da plataforma.
