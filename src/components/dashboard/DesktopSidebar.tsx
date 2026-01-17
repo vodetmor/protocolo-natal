@@ -36,7 +36,7 @@ export function DesktopSidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4 space-y-2">
+      <nav id="tour-sidebar" className="flex-1 p-4 space-y-2">
         {navItems.map((item) => (
           <RouterNavLink
             key={item.to}

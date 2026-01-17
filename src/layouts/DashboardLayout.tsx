@@ -3,7 +3,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { DesktopSidebar } from '@/components/dashboard/DesktopSidebar';
 import { MobileNav } from '@/components/dashboard/MobileNav';
 import { Loader2 } from 'lucide-react';
-import { TutorialOverlay } from '@/components/TutorialOverlay';
+import { GuidedTour } from '@/components/GuidedTour';
 
 export function DashboardLayout() {
   const { user, loading } = useAuth();
@@ -25,7 +25,7 @@ export function DashboardLayout() {
 
   return (
     <div className="min-h-screen flex w-full bg-background">
-      <TutorialOverlay />
+      <GuidedTour />
       <DesktopSidebar />
 
       <main className="flex-1 pb-20 md:pb-0">

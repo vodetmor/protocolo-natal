@@ -76,7 +76,7 @@ export default function DashboardHome() {
       </div>
 
       {/* Progress Card */}
-      <Card className="card-musa overflow-hidden">
+      <Card id="tour-progress" className="card-musa overflow-hidden">
         <div className="gradient-pink p-6 text-white">
           <div className="flex items-center justify-between mb-4">
             <div>
@@ -90,15 +90,15 @@ export default function DashboardHome() {
               </p>
             </div>
           </div>
-          <Progress 
-            value={overallProgress} 
+          <Progress
+            value={overallProgress}
             className="h-3 bg-white/30"
           />
         </div>
       </Card>
 
       {/* Today's Tasks */}
-      <Card className="card-musa">
+      <Card id="tour-checklist" className="card-musa">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <span>Checklist do Dia {currentDay}</span>
@@ -110,11 +110,10 @@ export default function DashboardHome() {
             <button
               key={task.id}
               onClick={() => handleToggleTask(task.field, task.completed)}
-              className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all duration-200 text-left ${
-                task.completed
+              className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all duration-200 text-left ${task.completed
                   ? 'bg-primary/10 border-primary/30'
                   : 'bg-muted/50 border-transparent hover:border-primary/20'
-              }`}
+                }`}
             >
               {task.completed ? (
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
@@ -129,9 +128,8 @@ export default function DashboardHome() {
                   {task.description}
                 </p>
               </div>
-              <task.icon className={`w-5 h-5 flex-shrink-0 ${
-                task.completed ? 'text-primary' : 'text-muted-foreground'
-              }`} />
+              <task.icon className={`w-5 h-5 flex-shrink-0 ${task.completed ? 'text-primary' : 'text-muted-foreground'
+                }`} />
             </button>
           ))}
         </CardContent>
