@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, LogIn } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 const Hero = () => {
   const scrollToOffer = () => {
@@ -10,15 +9,7 @@ const Hero = () => {
   return (
     <section className="relative gradient-hero overflow-hidden">
       {/* Login Button - Top Right */}
-      <div className="absolute top-4 right-4 md:top-8 md:right-8 z-50 animate-fade-in">
-        <Link to="/login">
-          <Button variant="outline" className="rounded-full bg-white/80 hover:bg-white backdrop-blur-sm border-primary/20 text-primary gap-2 shadow-sm hover:shadow-md transition-all">
-            <LogIn className="w-4 h-4" />
-            <span className="hidden sm:inline">Área da Musa</span>
-            <span className="sm:hidden">Entrar</span>
-          </Button>
-        </Link>
-      </div>
+
 
       {/* Decorative elements - hidden on mobile to prevent overflow */}
       <div className="hidden md:block absolute top-20 right-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float" />
