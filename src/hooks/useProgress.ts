@@ -145,11 +145,30 @@ export function useProgress() {
     };
   };
 
+  const completeWorkout = async (dayNumber: number) => {
+    return await updateDayProgress(dayNumber, 'workout_completed', true);
+  };
+
+  const updateCurrentDay = async (newDay: number) => {
+    if (!user) return;
+
+    const { error } = await supabase
+      .from('profiles')
+      .update({ current_day: newDay })
+      .eq('user_id', user.id);
+
+    if (!error) {
+      setProfile(prev => prev ? { ...prev, current_day: newDay } : null);
+    }
+  };
+
   return {
     progress,
     profile,
     loading,
     updateDayProgress,
+    completeWorkout,
+    updateCurrentDay,
     calculateOverallProgress,
     getTodayProgress,
     refetch: fetchProgress,
