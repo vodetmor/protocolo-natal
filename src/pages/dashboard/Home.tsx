@@ -4,6 +4,7 @@ import { useProgress } from '@/hooks/useProgress';
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 import { CheckCircle2, Circle, Droplets, Dumbbell, Utensils, ArrowRight, Sparkles } from 'lucide-react';
 
 export default function DashboardHome() {
@@ -45,8 +46,24 @@ export default function DashboardHome() {
     },
   ];
 
+  const { toast } = useToast();
+
   const handleToggleTask = async (field: 'workout_completed' | 'water_goal_completed' | 'meal_plan_followed', current: boolean) => {
     await updateDayProgress(currentDay, field, !current);
+
+    if (!current) {
+      toast({
+        title: "Tudo certo! ✨",
+        description: "Tarefa concluída com sucesso.",
+        duration: 2000,
+      })
+    } else {
+      toast({
+        title: "Desmarcado",
+        description: "Tarefa marcada como não concluída.",
+        duration: 2000,
+      })
+    }
   };
 
   if (loading) {
@@ -111,8 +128,8 @@ export default function DashboardHome() {
               key={task.id}
               onClick={() => handleToggleTask(task.field, task.completed)}
               className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all duration-200 text-left ${task.completed
-                  ? 'bg-primary/10 border-primary/30'
-                  : 'bg-muted/50 border-transparent hover:border-primary/20'
+                ? 'bg-primary/10 border-primary/30'
+                : 'bg-muted/50 border-transparent hover:border-primary/20'
                 }`}
             >
               {task.completed ? (
