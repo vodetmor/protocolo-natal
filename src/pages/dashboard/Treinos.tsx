@@ -114,28 +114,35 @@ const workouts = {
 
 export default function Treinos() {
   const [activeTab, setActiveTab] = useState('gym');
-  const { profile, completeWorkout } = useProgress();
+  const { profile, updateDayProgress } = useProgress(); // Removed completeWorkout usage
   const { toast } = useToast();
   const [completedWorkouts, setCompletedWorkouts] = useState<string[]>([]);
 
   const currentDay = profile?.current_day || 1;
 
   const handleCompleteWorkout = async (workoutId: string) => {
-    if (completedWorkouts.includes(workoutId)) {
-      toast({
-        title: 'Treino já concluído! 💪',
-        description: 'Você já finalizou este treino hoje.',
-      });
-      return;
-    }
+    const isCompleted = completedWorkouts.includes(workoutId);
 
-    await completeWorkout(currentDay);
-    setCompletedWorkouts(prev => [...prev, workoutId]);
-    
-    toast({
-      title: 'Parabéns, Musa! 🎉',
-      description: 'Treino concluído com sucesso! Continue assim!',
-    });
+    // Toggle state
+    const success = await updateDayProgress(currentDay, 'workout_completed', !isCompleted);
+
+    if (success) {
+      if (isCompleted) {
+        // Uncheck
+        setCompletedWorkouts(prev => prev.filter(id => id !== workoutId));
+        toast({
+          title: 'Treino desmarcado',
+          description: 'O status do treino foi atualizado.',
+        });
+      } else {
+        // Check
+        setCompletedWorkouts(prev => [...prev, workoutId]);
+        toast({
+          title: 'Parabéns, Musa! 🎉',
+          description: 'Treino concluído com sucesso! Continue assim!',
+        });
+      }
+    }
   };
 
   const currentWorkouts = workouts[activeTab as keyof typeof workouts];
@@ -226,17 +233,16 @@ export default function Treinos() {
 
                 {/* Complete Button */}
                 <Button
-                  className={`w-full rounded-xl ${
-                    completedWorkouts.includes(workout.id)
-                      ? 'bg-primary/20 text-primary hover:bg-primary/30'
-                      : 'gradient-pink'
-                  }`}
+                  className={`w-full rounded-xl ${completedWorkouts.includes(workout.id)
+                    ? 'bg-primary/20 text-primary hover:bg-primary/30'
+                    : 'gradient-pink'
+                    }`}
                   onClick={() => handleCompleteWorkout(workout.id)}
                 >
                   {completedWorkouts.includes(workout.id) ? (
                     <>
                       <CheckCircle2 className="w-4 h-4 mr-2" />
-                      Treino Concluído!
+                      Treino Concluído (Desmarcar)
                     </>
                   ) : (
                     <>
@@ -259,7 +265,7 @@ export default function Treinos() {
             Dica de Ouro
           </h3>
           <p className="text-sm text-muted-foreground">
-            Lembre-se: a técnica correta é mais importante que a carga. Faça cada movimento com 
+            Lembre-se: a técnica correta é mais importante que a carga. Faça cada movimento com
             atenção e controle. Seu corpo vai agradecer! 💕
           </p>
         </CardContent>
