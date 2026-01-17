@@ -11,9 +11,7 @@ export function GuidedTour() {
     useEffect(() => {
         const hasSeenTour = localStorage.getItem('has_seen_interactive_tour');
 
-        // Only run if user is logged in and hasn't seen the tour
         if (user && !hasSeenTour) {
-            // Delay to ensure elements are rendered
             const timer = setTimeout(() => {
                 const tourDriver = driver({
                     showProgress: true,
@@ -23,7 +21,7 @@ export function GuidedTour() {
                     doneBtnText: 'Começar! ✨',
                     steps: [
                         {
-                            element: '#root', // Center modal
+                            element: '#root',
                             popover: {
                                 title: 'Bem-vinda, Musa! 💕',
                                 description: 'Que bom ter você aqui! Vou te mostrar rapidinho como o seu App funciona.',
@@ -57,15 +55,10 @@ export function GuidedTour() {
                         }
                     ],
                     onDestroyStarted: () => {
-                        // Check if user clicked "Done" or closed it
-                        if (!tourDriver.hasNextStep()) {
-                            localStorage.setItem('has_seen_interactive_tour', 'true');
-                            // Optional: Navigate to workouts as a "demo"
-                            // navigate('/dashboard/treinos');
-                        }
-                    },
-                    onCloseClick: () => {
+                        // Simply destroy the driver instance and mark as seen.
+                        // We rely on driver.js default teardown behavior but explicitly set storage.
                         localStorage.setItem('has_seen_interactive_tour', 'true');
+                        tourDriver.destroy();
                     }
                 });
 
@@ -76,5 +69,5 @@ export function GuidedTour() {
         }
     }, [user, navigate]);
 
-    return null; // Component doesn't render anything itself
+    return null;
 }

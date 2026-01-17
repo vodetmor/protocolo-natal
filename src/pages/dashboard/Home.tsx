@@ -95,25 +95,30 @@ export default function DashboardHome() {
       </div>
 
       {/* Progress Card */}
-      <Card id="tour-progress" className="card-musa overflow-hidden">
-        <div className="gradient-pink p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
+      <Card id="tour-progress" className="card-musa">
+        <CardHeader className="pb-2">
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-lg font-semibold">Progresso Geral</CardTitle>
+            <Sparkles className="w-5 h-5 text-primary" />
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-end justify-between mb-4">
             <div>
-              <p className="text-sm opacity-90">Progresso Geral</p>
-              <p className="text-3xl font-bold">{overallProgress}%</p>
+              <p className="text-3xl font-bold text-primary">{overallProgress}%</p>
+              <p className="text-sm text-muted-foreground">da sua jornada concluída</p>
             </div>
             <div className="text-right">
-              <p className="text-sm opacity-90">Dias completados</p>
-              <p className="text-xl font-semibold">
-                {Math.floor((overallProgress / 100) * 28)} de 28
+              <p className="text-xl font-semibold text-foreground">
+                {Math.floor((overallProgress / 100) * 28)} <span className="text-sm font-normal text-muted-foreground">/ 28 dias</span>
               </p>
             </div>
           </div>
           <Progress
             value={overallProgress}
-            className="h-3 bg-white/30"
+            className="h-3"
           />
-        </div>
+        </CardContent>
       </Card>
 
       {/* Today's Tasks */}
