@@ -49,20 +49,22 @@ export default function DashboardHome() {
   const { toast } = useToast();
 
   const handleToggleTask = async (field: 'workout_completed' | 'water_goal_completed' | 'meal_plan_followed', current: boolean) => {
-    await updateDayProgress(currentDay, field, !current);
+    const success = await updateDayProgress(currentDay, field, !current);
 
-    if (!current) {
-      toast({
-        title: "Tudo certo! ✨",
-        description: "Tarefa concluída com sucesso.",
-        duration: 2000,
-      })
-    } else {
-      toast({
-        title: "Desmarcado",
-        description: "Tarefa marcada como não concluída.",
-        duration: 2000,
-      })
+    if (success) {
+      if (!current) {
+        toast({
+          title: "Tudo certo! ✨",
+          description: "Tarefa concluída com sucesso.",
+          duration: 2000,
+        })
+      } else {
+        toast({
+          title: "Desmarcado",
+          description: "Tarefa marcada como não concluída.",
+          duration: 2000,
+        })
+      }
     }
   };
 

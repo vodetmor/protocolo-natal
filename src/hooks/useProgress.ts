@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
+import { useToast } from '@/hooks/use-toast';
 
 interface DailyProgress {
   day_number: number;
@@ -16,6 +17,7 @@ interface Profile {
 
 export function useProgress() {
   const { user } = useAuth();
+  const { toast } = useToast();
   const [progress, setProgress] = useState<DailyProgress[]>([]);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -37,6 +39,9 @@ export function useProgress() {
           .maybeSingle()
       ]);
 
+      if (progressResult.error) throw progressResult.error;
+      if (profileResult.error) throw profileResult.error;
+
       if (progressResult.data) {
         setProgress(progressResult.data);
       }
@@ -44,8 +49,13 @@ export function useProgress() {
       if (profileResult.data) {
         setProfile(profileResult.data);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error fetching progress:', error);
+      toast({
+        title: "Erro ao carregar dados",
+        description: error.message || "Verifique sua conexão.",
+        variant: "destructive"
+      });
     } finally {
       setLoading(false);
     }
@@ -62,59 +72,59 @@ export function useProgress() {
   ) => {
     if (!user) return;
 
-    const existingDay = progress.find(p => p.day_number === dayNumber);
-
-    if (existingDay) {
-      const { error } = await supabase
-        .from('daily_progress')
-        .update({ [field]: value })
-        .eq('user_id', user.id)
-        .eq('day_number', dayNumber);
-
-      if (!error) {
-        setProgress(prev =>
-          prev.map(p =>
-            p.day_number === dayNumber ? { ...p, [field]: value } : p
-          )
-        );
-      }
-    } else {
-      const { error } = await supabase
-        .from('daily_progress')
-        .insert({
-          user_id: user.id,
+    // Optimistic Update
+    const oldProgress = [...progress];
+    setProgress(prev => {
+      const index = prev.findIndex(p => p.day_number === dayNumber);
+      if (index >= 0) {
+        const newArr = [...prev];
+        newArr[index] = { ...newArr[index], [field]: value };
+        return newArr;
+      } else {
+        return [...prev, {
           day_number: dayNumber,
-          [field]: value,
-        });
-
-      if (!error) {
-        setProgress(prev => [
-          ...prev,
-          {
-            day_number: dayNumber,
-            workout_completed: field === 'workout_completed' ? value : false,
-            water_goal_completed: field === 'water_goal_completed' ? value : false,
-            meal_plan_followed: field === 'meal_plan_followed' ? value : false,
-          },
-        ]);
+          workout_completed: field === 'workout_completed' ? value : false,
+          water_goal_completed: field === 'water_goal_completed' ? value : false,
+          meal_plan_followed: field === 'meal_plan_followed' ? value : false,
+        }];
       }
-    }
-  };
+    });
 
-  const completeWorkout = async (dayNumber: number) => {
-    await updateDayProgress(dayNumber, 'workout_completed', true);
-  };
+    try {
+      // Try to update directly explicitly checking unique constraint via Upsert logic provided by Supabase
+      // But since we want to be granular, let's check existence (or we rely on the state we just fetched).
+      // Best approach: UPSERT with day_number + user_id.
 
-  const updateCurrentDay = async (newDay: number) => {
-    if (!user) return;
+      // Prepare the payload. We need all fields for an UPSERT if we don't want to overwrite with nulls? 
+      // No, we can select first or just use what we have in state.
 
-    const { error } = await supabase
-      .from('profiles')
-      .update({ current_day: newDay })
-      .eq('user_id', user.id);
+      const currentItem = progress.find(p => p.day_number === dayNumber);
 
-    if (!error) {
-      setProfile(prev => prev ? { ...prev, current_day: newDay } : null);
+      const payload = {
+        user_id: user.id,
+        day_number: dayNumber,
+        workout_completed: field === 'workout_completed' ? value : currentItem?.workout_completed ?? false,
+        water_goal_completed: field === 'water_goal_completed' ? value : currentItem?.water_goal_completed ?? false,
+        meal_plan_followed: field === 'meal_plan_followed' ? value : currentItem?.meal_plan_followed ?? false,
+      };
+
+      const { error } = await supabase
+        .from('daily_progress')
+        .upsert(payload, { onConflict: 'user_id,day_number' });
+
+      if (error) throw error;
+      return true;
+
+    } catch (error: any) {
+      console.error('Error updating progress:', error);
+      // Revert state
+      setProgress(oldProgress);
+      toast({
+        title: "Erro ao salvar",
+        description: "Não foi possível salvar sua alteração. " + (error.message || ""),
+        variant: "destructive"
+      });
+      return false;
     }
   };
 
@@ -140,8 +150,6 @@ export function useProgress() {
     profile,
     loading,
     updateDayProgress,
-    completeWorkout,
-    updateCurrentDay,
     calculateOverallProgress,
     getTodayProgress,
     refetch: fetchProgress,
