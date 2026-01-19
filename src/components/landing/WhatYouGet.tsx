@@ -57,12 +57,7 @@ const WhatYouGet = () => {
                         </div>
                       </div>
                     </div>
-                    {/* Inject Mockup 2 after Estrutura Alimentar (index 1) */}
-                    {index === 1 && (
-                      <div className="my-4 rounded-2xl overflow-hidden shadow-lg border border-primary/10">
-                        <img src="/imagens/landing/mockup_estrutura.png" alt="Estrutura Alimentar Flexível" className="w-full h-auto" />
-                      </div>
-                    )}
+
                   </div>
                 ))}
               </div>
@@ -72,6 +67,10 @@ const WhatYouGet = () => {
                   Você não precisa decidir tudo todos os dias.<br />
                   <span className="text-foreground font-medium">O protocolo te guia.</span>
                 </p>
+
+                <div className="mt-6 rounded-2xl overflow-hidden shadow-lg border border-primary/10">
+                  <img src="/imagens/landing/mockup_estrutura.png" alt="Estrutura Alimentar Flexível" className="w-full h-auto" />
+                </div>
               </div>
             </div>
           </div>
