@@ -58,7 +58,7 @@ const Offer = () => {
 
               <div className="relative z-10 mt-4">
                 <div className="flex items-center gap-2 mb-2 justify-center">
-                  <h3 className="font-display text-2xl font-bold text-foreground">Protocolo 28</h3>
+                  <h3 className="font-display text-2xl font-bold text-foreground">Protocolo Corpo de Musa</h3>
                   <span className="text-primary font-bold">+</span>
                   <span className="text-primary font-semibold">Bônus</span>
                 </div>

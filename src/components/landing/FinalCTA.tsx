@@ -18,18 +18,18 @@ const FinalCTA = () => {
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
             Você não precisa mudar tudo.
           </h2>
-          
+
           <p className="font-display text-2xl md:text-3xl text-primary italic mb-8">
             Só precisa de 4 semanas com a estratégia certa.
           </p>
 
-          <Button 
-            variant="cta" 
-            size="xl" 
+          <Button
+            variant="cta"
+            size="xl"
             onClick={scrollToOffer}
             className="group mb-8"
           >
-            Quero começar meu Protocolo 28 agora
+            Quero começar meu Protocolo Corpo de Musa agora
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Button>
 

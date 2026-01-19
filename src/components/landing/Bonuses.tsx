@@ -3,32 +3,32 @@ import { Clock, Dumbbell, Utensils, CheckSquare, Gift } from "lucide-react";
 const Bonuses = () => {
   const bonuses = [
     {
-      icon: Clock,
       title: "Cardápio de Emergência",
       description: "Opções rápidas para dias corridos. Não fuja do plano mesmo sem tempo.",
-      color: "text-primary",
-      bg: "bg-primary/10"
+      image: "/imagens/landing/bonus_cardapio.jpeg",
+      icon: Clock,
+      color: "text-gold"
     },
     {
-      icon: Dumbbell,
       title: "Treinos Rápidos",
       description: "30 minutos em casa ou academia. Eficiência para quem tem rotina cheia.",
-      color: "text-gold",
-      bg: "bg-gold/10"
+      image: "/imagens/landing/bonus_treinos.jpeg",
+      icon: Dumbbell,
+      color: "text-yellow-500"
     },
     {
-      icon: Utensils,
       title: "Guia de Restaurantes",
       description: "Aprenda a comer fora sem culpa e sem sabotar seus resultados.",
-      color: "text-green-600",
-      bg: "bg-green-500/10"
+      image: "/imagens/landing/bonus_restaurantes.jpeg",
+      icon: Utensils,
+      color: "text-green-500"
     },
     {
-      icon: CheckSquare,
       title: "Checklist Semanal",
       description: "Acompanhe seu progresso de forma leve e organizada, sem neuras.",
-      color: "text-blue-600",
-      bg: "bg-blue-500/10"
+      image: "/imagens/landing/bonus_checklist.jpeg",
+      icon: CheckSquare,
+      color: "text-blue-500"
     },
   ];
 
@@ -49,47 +49,40 @@ const Bonuses = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Bundle Image - Left Side */}
-            <div className="relative order-2 lg:order-1">
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-gold/20 rounded-3xl blur-3xl" />
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-primary/10 bg-white/5">
-                <img
-                  src="/imagens/landing/user_bundle.jpeg"
-                  alt="Kit completo de Bônus: Cardápio, Treinos e Checklist"
-                  className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-            </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {bonuses.map((bonus, index) => (
+              <div
+                key={index}
+                className="group bg-card rounded-2xl overflow-hidden shadow-card border border-border hover:border-primary/30 transition-all hover:translate-y-[-4px]"
+              >
+                <div className="aspect-square relative overflow-hidden">
 
-            {/* Didactic List - Right Side */}
-            <div className="order-1 lg:order-2 space-y-8">
-              <div className="space-y-6">
-                {bonuses.map((bonus, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start gap-4 p-4 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors"
-                  >
-                    <div className={`w-12 h-12 rounded-xl ${bonus.bg} flex items-center justify-center flex-shrink-0 mt-1`}>
-                      <bonus.icon className={`w-6 h-6 ${bonus.color}`} />
-                    </div>
-                    <div>
-                      <h3 className="font-display text-xl font-bold text-foreground mb-1">
-                        {bonus.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
-                        {bonus.description}
-                      </p>
-                    </div>
+                  <img
+                    src={bonus.image}
+                    alt={bonus.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-5">
+                  <div className="mb-3">
+                    <bonus.icon className={`w-8 h-8 ${bonus.color}`} />
                   </div>
-                ))}
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2">
+                    {bonus.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {bonus.description}
+                  </p>
+                </div>
               </div>
+            ))}
+          </div>
 
-              <div className="bg-muted/30 p-6 rounded-2xl border border-dashed border-primary/30 text-center">
-                <p className="text-foreground font-medium">
-                  + Acesso imediato a todo o material digital
-                </p>
-              </div>
+          <div className="mt-12 text-center">
+            <div className="inline-block bg-muted/30 p-6 rounded-2xl border border-dashed border-primary/30">
+              <p className="text-foreground font-medium">
+                + Acesso imediato a todo o material digital
+              </p>
             </div>
           </div>
         </div>

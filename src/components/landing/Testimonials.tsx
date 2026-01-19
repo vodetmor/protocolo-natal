@@ -58,7 +58,7 @@ const Testimonials = () => {
               O que elas estão <span className="text-primary">dizendo</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Histórias reais de mulheres que seguiram o Protocolo 28
+              Histórias reais de mulheres que seguiram o Protocolo Corpo de Musa
             </p>
           </div>
 

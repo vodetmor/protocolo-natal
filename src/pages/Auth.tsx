@@ -19,7 +19,7 @@ const Auth = () => {
   const [fullName, setFullName] = useState('');
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string; fullName?: string }>({});
-  
+
   const { signIn, signUp, user } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -59,9 +59,9 @@ const Auth = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
+
     setLoading(true);
 
     try {
@@ -107,7 +107,7 @@ const Auth = () => {
         } else {
           toast({
             title: 'Cadastro realizado! 🎉',
-            description: 'Bem-vinda ao Protocolo 28, Musa!',
+            description: 'Bem-vinda ao Protocolo Corpo de Musa, Musa!',
           });
           navigate('/dashboard');
         }
@@ -144,7 +144,7 @@ const Auth = () => {
             Corpo de Musa
           </h1>
         </div>
-        <p className="text-muted-foreground">Protocolo 28</p>
+        <p className="text-muted-foreground">Protocolo Corpo de Musa</p>
       </div>
 
       <Card className="w-full max-w-md shadow-xl border-primary/10">

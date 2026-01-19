@@ -33,28 +33,36 @@ const WhatYouGet = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            {/* Features */}
-            <div className="bg-card rounded-3xl p-8 shadow-card border border-border">
-              <div className="inline-flex items-center gap-2 bg-gold-light px-4 py-2 rounded-full mb-6">
-                <span className="text-sm font-semibold text-accent-foreground">Produto Principal</span>
+          <div className="flex justify-center">
+            {/* Features - Single Column Centered */}
+            <div className="bg-card rounded-3xl p-8 shadow-card border border-border col-span-full max-w-2xl mx-auto">
+              {/* Mockup Topo */}
+              <div className="mb-6 rounded-2xl overflow-hidden shadow-lg border border-primary/10">
+                <img src="/imagens/landing/mockup_protocolo.png" alt="Protocolo Corpo de Musa" className="w-full h-auto" />
               </div>
 
               <div className="space-y-4">
                 {mainFeatures.map((feature, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start gap-4 p-4 rounded-xl bg-background/50 border border-border"
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <feature.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-green-500" />
-                        <span className="text-foreground font-medium">{feature.text}</span>
+                  <div key={index}>
+                    <div
+                      className="flex items-start gap-4 p-4 rounded-xl bg-background/50 border border-border"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <feature.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <Check className="w-5 h-5 text-green-500" />
+                          <span className="text-foreground font-medium">{feature.text}</span>
+                        </div>
                       </div>
                     </div>
+                    {/* Inject Mockup 2 after Estrutura Alimentar (index 1) */}
+                    {index === 1 && (
+                      <div className="my-4 rounded-2xl overflow-hidden shadow-lg border border-primary/10">
+                        <img src="/imagens/landing/mockup_estrutura.png" alt="Estrutura Alimentar Flexível" className="w-full h-auto" />
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -64,18 +72,6 @@ const WhatYouGet = () => {
                   Você não precisa decidir tudo todos os dias.<br />
                   <span className="text-foreground font-medium">O protocolo te guia.</span>
                 </p>
-              </div>
-            </div>
-
-            {/* Product mockup */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-primary/10 rounded-3xl blur-2xl" />
-              <div className="relative bg-gradient-to-br from-rose-light to-gold-light rounded-3xl border border-primary/10 overflow-hidden shadow-2xl">
-                <img
-                  src="/imagens/landing/user_mockup.jpeg"
-                  alt="Mockup do Protocolo 28"
-                  className="w-full h-auto object-contain"
-                />
               </div>
             </div>
           </div>

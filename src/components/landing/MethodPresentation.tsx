@@ -8,7 +8,7 @@ const MethodPresentation = () => {
             {/* Content */}
             <div>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-8">
-                O Protocolo 28 não foi criado para te{" "}
+                O Protocolo Corpo de Musa não foi criado para te{" "}
                 <span className="text-primary italic">exigir mais</span>.
               </h2>
 
@@ -20,7 +20,7 @@ const MethodPresentation = () => {
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   O{" "}
                   <span className="text-foreground font-semibold">
-                    Corpo de Musa | Protocolo 28
+                    Corpo de Musa | Protocolo Corpo de Musa
                   </span>{" "}
                   é uma estratégia de organização alimentar combinada com
                   treinos possíveis, estruturada em ciclos semanais.

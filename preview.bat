@@ -11,6 +11,6 @@ echo.
 echo O site abrirá automaticamente no seu navegador.
 echo Pressione CTRL + C para parar o servidor.
 echo.
-start http://localhost:8080
+start http://localhost:8082
 call npm run dev
 pause

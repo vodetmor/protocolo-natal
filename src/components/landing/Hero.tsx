@@ -27,7 +27,7 @@ const Hero = () => {
               <div className="relative bg-gradient-to-br from-rose-light to-gold-light rounded-3xl aspect-[4/5] border border-primary/10 overflow-hidden">
                 <img
                   src="/imagens/antesdepoishero.png"
-                  alt="Antes e depois do Protocolo 28"
+                  alt="Antes e depois do Protocolo Corpo de Musa"
                   className="w-full h-full object-cover object-center"
                   loading="eager"
                 />
@@ -80,7 +80,7 @@ const Hero = () => {
                 onClick={scrollToOffer}
                 className="group w-full sm:w-auto whitespace-normal text-center"
               >
-                Quero começar meu Protocolo 28
+                Quero começar meu Protocolo Corpo de Musa
                 <ArrowRight className="hidden sm:block w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>

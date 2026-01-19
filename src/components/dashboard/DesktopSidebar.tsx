@@ -30,7 +30,7 @@ export function DesktopSidebar() {
             <h1 className="font-bold text-lg bg-gradient-to-r from-primary to-pink-400 bg-clip-text text-transparent">
               Corpo de Musa
             </h1>
-            <p className="text-xs text-muted-foreground">Protocolo 28</p>
+            <p className="text-xs text-muted-foreground">Protocolo Corpo de Musa</p>
           </div>
         </div>
       </div>
