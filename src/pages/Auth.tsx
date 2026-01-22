@@ -13,7 +13,7 @@ const emailSchema = z.string().email('E-mail inválido');
 const passwordSchema = z.string().min(6, 'Senha deve ter pelo menos 6 caracteres');
 
 const Auth = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
@@ -226,7 +226,28 @@ const Auth = () => {
           </form>
 
 
+
         </CardContent>
+        <div className="px-6 pb-6 text-center">
+          <button
+            type="button"
+            onClick={() => {
+              setIsLogin(!isLogin);
+              setErrors({});
+            }}
+            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+          >
+            {isLogin ? (
+              <>
+                Ainda não tem conta? <span className="font-semibold underline">Cadastre-se</span>
+              </>
+            ) : (
+              <>
+                Já tem conta? <span className="font-semibold underline">Entrar</span>
+              </>
+            )}
+          </button>
+        </div>
       </Card>
 
       <p className="mt-8 text-xs text-muted-foreground text-center max-w-sm">
