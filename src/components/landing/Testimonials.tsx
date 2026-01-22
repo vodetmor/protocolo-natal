@@ -2,10 +2,8 @@ import { Star, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 
-const Hero = () => {
-  const scrollToOffer = () => {
-    document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" });
-  };
+
+ 
 
 const Testimonials = () => {
   const textTestimonials = [
@@ -33,7 +31,11 @@ const Testimonials = () => {
       role: "Advogada, 40 anos",
       image: "/imagens/landing/avatar_fernanda.jpg"
     },
-  ];
+    
+  ]; 
+  const scrollToOffer = () => {
+    document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const photoTestimonials = [
     {
