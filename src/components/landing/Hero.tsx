@@ -73,17 +73,7 @@ const Hero = () => {
               sem dietas rígidas e sem viver para a academia.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-up delay-400">
-              <Button
-                variant="cta"
-                size="lg"
-                onClick={scrollToOffer}
-                className="group w-full sm:w-auto whitespace-normal text-center"
-              >
-                Quero começar meu Protocolo Corpo de Musa
-                <ArrowRight className="hidden sm:block w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </div>
+          
 
             {/* Trust */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-8 animate-fade-up delay-500 text-muted-foreground">

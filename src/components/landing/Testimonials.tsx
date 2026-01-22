@@ -1,4 +1,11 @@
 import { Star, Quote } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Sparkles } from "lucide-react";
+
+const Hero = () => {
+  const scrollToOffer = () => {
+    document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" });
+  };
 
 const Testimonials = () => {
   const textTestimonials = [
@@ -97,6 +104,8 @@ const Testimonials = () => {
             </div>
           </div>
 
+          
+
           {/* Before/After Photos */}
           <div className="mb-16">
             <h3 className="font-display text-xl font-semibold text-foreground mb-6 text-center">
@@ -126,6 +135,18 @@ const Testimonials = () => {
               ))}
             </div>
           </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-up delay-400">
+              <Button
+                variant="cta"
+                size="lg"
+                onClick={scrollToOffer}
+                className="group w-full sm:w-auto whitespace-normal text-center"
+              >
+                Quero começar meu Protocolo Corpo de Musa
+                <ArrowRight className="hidden sm:block w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </div>
 
           {/* Text Testimonials */}
           <div className="grid md:grid-cols-2 gap-6">
