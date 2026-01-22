@@ -42,12 +42,12 @@ const Index = () => {
       <Hero />
       <EmotionalConnection />
       <ExpectationBreak />
-      <MethodPresentation />
+      <Testimonials />
       <HowItWorks />
       <Authority />
       <WhatYouGet />
       <Bonuses />
-      <Testimonials />
+      <MethodPresentation />
       <Offer />
       <Guarantee />
       <FinalCTA />

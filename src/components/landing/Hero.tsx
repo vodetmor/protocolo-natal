@@ -78,7 +78,7 @@ const Hero = () => {
                 variant="cta"
                 size="lg"
                 onClick={scrollToOffer}
-                className="group w-full sm:w-auto whitespace-normal text-center"
+                className="hidden group w-full sm:w-auto whitespace-normal text-center"
               >
                 Quero começar meu Protocolo Corpo de Musa
                 <ArrowRight className="hidden sm:block w-5 h-5 group-hover:translate-x-1 transition-transform" />
